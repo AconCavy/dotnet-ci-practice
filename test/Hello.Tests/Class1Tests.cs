@@ -10,11 +10,5 @@ namespace Hello.Tests
         {
             Assert.IsTrue(true);
         }
-
-        [TestMethod]
-        public void FailTest()
-        {
-            Assert.Fail();
-        }
     }
 }
