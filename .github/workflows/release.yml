@@ -2,9 +2,8 @@ name: Release
 
 on:
   push:
-    branches: [ main ]
     tags: 
-    - 'v*'
+    - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
   test:
@@ -47,4 +46,4 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        path: ./src/Hello/bin/Release/**/*.dll
+        path: ./src/Hello/bin/Release/*/Hello.dll
