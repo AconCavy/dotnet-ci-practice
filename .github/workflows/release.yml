@@ -52,3 +52,4 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./src/Hello/bin/Release/net5.0/Hello.dll
         asset_name: Hello.dll
+        asset_content_type: application/octet-stream
