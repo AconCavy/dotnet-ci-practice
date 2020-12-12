@@ -6,9 +6,10 @@ namespace Hello.Tests
     public class Class1Tests
     {
         [TestMethod]
-        public void PassTest()
+        public void HelloTest()
         {
-            Assert.IsTrue(true);
+            var class1 = new Class1();
+            Assert.AreEqual("Hello World!", class1.Hello());
         }
     }
 }
