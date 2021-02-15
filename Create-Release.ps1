@@ -6,10 +6,6 @@ $root = Get-Location
 
 $assets = @()
 
-if ($tag -like 'v*-*') {
-    $assets += '--prerelease'
-}
-
 Get-ChildItem -Path $publish -Directory |
 ForEach-Object {
     $target = $_.Name
@@ -28,4 +24,9 @@ ForEach-Object {
     $assets += "-a $dest$ext"
 }
 
-hub release create $($assets -join ' ') -m $tag $tag
+if ($tag -like 'v*-*') {
+    $assets += '--prerelease'
+}
+
+$options = $assets -join ' '
+hub release create $options -m $tag $tag
