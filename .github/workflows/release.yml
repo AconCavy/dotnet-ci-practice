@@ -31,25 +31,11 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Build
-      run: dotnet build -c Release
-      
+      shell: pwsh
+      run: ./Publish.ps1 ./publish
+
     - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
+      shell: pwsh
+      run: ./Create-Release.ps1 ./publish ${GITHUB_REF##*/}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
-        draft: false
-        prerelease: ${{ contains(github.ref, '-') }}
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./src/Hello/bin/Release/net5.0/Hello.dll
-        asset_name: Hello.dll
-        asset_content_type: application/octet-stream
