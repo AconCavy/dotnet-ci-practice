@@ -3,13 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Hello.Tests
 {
     [TestClass]
-    public class Class1Tests
+    public class GreetTests
     {
         [TestMethod]
         public void HelloTest()
         {
-            var class1 = new Class1();
-            Assert.AreEqual("Hello World!", class1.Hello());
+            var greet = new Greet();
+            Assert.AreEqual("Hello World!", greet.Hello());
         }
     }
 }

@@ -1,6 +1,6 @@
 namespace Hello
 {
-    public class Class1
+    public class Greet
     {
         public string Hello()
         {
