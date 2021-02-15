@@ -36,6 +36,6 @@ jobs:
 
     - name: Create Release
       shell: pwsh
-      run: ./Create-Release.ps1 ./publish ${GITHUB_REF##*/}
+      run: ./Create-Release.ps1 ./publish $env:GITHUB_REF.Split("/")[-1]
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
