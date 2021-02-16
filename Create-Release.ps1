@@ -19,7 +19,7 @@ ForEach-Object {
         $ext = ".tar.gz"
         tar -zcvf $target$ext $target
     }
-    $assets += "-a ./$target$ext"
+    $assets += "./$target$ext"
 }
 
 if ($tag -like 'v*-*') {
@@ -27,4 +27,4 @@ if ($tag -like 'v*-*') {
 }
 
 $options = $assets -join ' '
-hub release create $options -m $tag $tag
+gh release create $tag $options
