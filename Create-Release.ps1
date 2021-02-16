@@ -19,11 +19,11 @@ ForEach-Object {
         $ext = ".tar.gz"
         tar -zcvf $target$ext $target
     }
-    $assets += "--attach ./$target$ext"
+    $assets += "-a ./$target$ext"
 }
 
 if ($tag -like 'v*-*') {
-    $assets += '--prerelease'
+    $assets += '-p'
 }
 
 $options = $assets -join ' '
