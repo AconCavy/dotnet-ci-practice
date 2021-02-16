@@ -3,6 +3,7 @@ Param([string] $publish, [string] $tag)
 echo "publish = $publish"
 echo "tag = $tag"
 
+$isPreview = $tag -like 'v*-*' ? '-p' : ""
 Set-Location $publish
 
 $assets = @()
@@ -22,9 +23,5 @@ ForEach-Object {
     $assets += "./$target$ext"
 }
 
-if ($tag -like 'v*-*') {
-    $assets += '-p'
-}
 
-$options = $assets -join ' '
-gh release create $tag $options
+gh release create $tag $assets $isPreview
