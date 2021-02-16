@@ -2,26 +2,24 @@ Param([string] $publish, [string] $tag)
 
 echo "publish = $publish"
 echo "tag = $tag"
-$root = Get-Location
+
+Set-Location $publish
 
 $assets = @()
 
-Get-ChildItem -Path $publish -Directory |
+Get-ChildItem -Directory |
 ForEach-Object {
     $target = $_.Name
-    $dest = "$publish/$target"
     $ext = ""
     if ($_ -like '*win-*') {
         $ext = ".zip"
-        Compress-Archive -Path $dest -DestinationPath $dest$ext
+        Compress-Archive -Path $target -DestinationPath $target$ext
     }
     else {
         $ext = ".tar.gz"
-        Set-Location $publish
-        tar -zcvf $target$ext "$target"
-        Set-Location $root
+        tar -zcvf $target$ext $target
     }
-    $assets += "-a $dest$ext"
+    $assets += "-a $target$ext"
 }
 
 if ($tag -like 'v*-*') {
