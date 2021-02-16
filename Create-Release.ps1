@@ -19,7 +19,7 @@ ForEach-Object {
         $ext = ".tar.gz"
         tar -zcvf $target$ext $target
     }
-    $assets += "-a $target$ext"
+    $assets += "--attach ./$target$ext"
 }
 
 if ($tag -like 'v*-*') {
