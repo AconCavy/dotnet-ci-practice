@@ -34,11 +34,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Import module
-      run: Import-Module ./release.ps1
     - name: Build
-      run: Build-Release -Path ./src/Hello
+      run: Import-Module ./release.ps1 && Build-Release -Path ./src/Hello
     - name: Create Release
-      run: Publish-Release -Tag $env:GITHUB_REF.Split("/")[-1]
+      run: Import-Module ./release.ps1 && Publish-Release -Tag $env:GITHUB_REF.Split("/")[-1]
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
